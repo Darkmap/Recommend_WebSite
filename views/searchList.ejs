@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <!--<link href="css/bootstrap.min.css" rel="stylesheet">-->
+</head>
+<body>
+<h1><%= title %></h1>
+<ul>
+    <%for (var key in mlist){%>
+    <!--<button onclick="recommend(<%=mlist[key]._source.id%>)"><%= mlist[key]._source.name %></button>-->
+    <li onclick="recommend(<%=mlist[key]._source.id%>)"><%= mlist[key]._source.name %></li>
+    <%}%>
+</ul>
+
+<script>
+    function recommend (id) {
+        var form = document.createElement('form');
+        ele = document.createElement("input");
+        ele.name = 'id';
+        ele.value = id;
+        form.setAttribute('method', 'post');
+        form.setAttribute('action', '/movie/recommend');
+        form.appendChild(ele);
+        form.style.display = 'hidden';
+        document.body.appendChild(form)
+        form.submit();
+    }
+</script>
+
+</body>
+</html>
